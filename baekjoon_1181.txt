@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+	Scanner sc = new Scanner(System.in);
+	int num = Integer.parseInt(sc.next());
+	HashSet<String> hs = new HashSet<String>();
+	for(int i=0; i<num; i++){
+		hs.add(sc.next());
+	}
+	
+	ArrayList<String> arr = new ArrayList<String>(hs);
+	
+	Collections.sort(arr, new Comparator<String>(){
+		public int compare(String s1, String s2){
+			if(s1.length() > s2.length()){
+				return 1;  // s2 - s1
+			}else if(s1.length() < s2.length()){
+				return -1;  //s1 s2
+			}else{
+				return s1.compareTo(s2); //두 문자열을 사전식으로 비교
+			}
+		}
+	});
+	
+	for(int i=0; i<arr.size();i++)
+		System.out.println(arr.get(i));
+	}
+}
