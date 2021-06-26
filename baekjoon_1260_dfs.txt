@@ -1,0 +1,45 @@
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Main {
+	
+	static int n,m,v;
+	static boolean visit[];
+	static boolean map[][];
+	static Queue<Integer> q = new LinkedList<Integer>();
+	
+	public static void main(String[] args) throws IOException   {
+	
+	Scanner sc = new Scanner(System.in);
+	
+	n = sc.nextInt();
+	m = sc.nextInt();
+	v = sc.nextInt();
+	
+	visit = new boolean[n+1];
+	map = new boolean[n+1][n+1];
+	
+	for(int i=0; i<m; i++){
+		int a = sc.nextInt();
+		int b= sc.nextInt();
+		
+		map[a][b] = true;
+		map[b][a] = true;
+	}
+	
+	dfs(v);
+	
+}
+
+	private static void dfs(int start) {
+		visit[start] = true;
+		System.out.print(start + " ");
+		
+		for(int i=1; i<=n; i++){
+			if(visit[i] ==false && map[start][i]==true){
+				dfs(i);
+			}
+		}
+	}
