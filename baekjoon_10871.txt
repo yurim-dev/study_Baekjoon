@@ -1,0 +1,24 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) throws IOException   {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		String[] ab = sc.nextLine().split(" ");
+		
+		int n = Integer.parseInt(ab[0]);
+		int x = Integer.parseInt(ab[1]);
+		
+		String line[] = sc.nextLine().split(" ");
+		int num[] = new int[line.length];
+		for(int i=0; i<line.length; i++){
+			num[i] = Integer.parseInt(line[i]);
+		if(num[i]<x){
+			System.out.print(num[i]+" ");
+			}
+		}
+	}	
+}
