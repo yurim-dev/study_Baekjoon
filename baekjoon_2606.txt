@@ -1,0 +1,52 @@
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Main {
+	
+	static int computer, connect, count;
+	static boolean visits[] ;
+	static boolean map[][];
+	static Queue<Integer> q = new LinkedList<Integer>();
+	public static void main(String[] args) throws IOException   {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		computer = sc.nextInt(); //컴퓨터 수
+		connect = sc.nextInt(); // 직접 연결되어 있는 수
+		count = 0;
+		
+		visits = new boolean[computer+1]; //방문처리
+		map = new boolean[computer+1][computer+1]; //간선처리
+		
+		for(int i=1; i<=connect; i++){
+			int tmp1 = sc.nextInt();
+			int tmp2 = sc.nextInt();
+			
+			map[tmp1][tmp2] = true;
+			map[tmp2][tmp1] = true;
+		}
+		
+		bfs(1);
+		
+		System.out.println(count);
+	}
+	public static void bfs(int start){
+		
+		q.offer(start);
+		visits[start] = true;
+		
+		while(!q.isEmpty()){
+			int temp = q.poll();
+			
+			for(int i = 1; i<=computer; i++){
+				if(map[temp][i]==true && visits[i]==false){
+					q.offer(i);
+					visits[i]=true;
+					count++;
+				}
+			}
+		}
+	}
+}
